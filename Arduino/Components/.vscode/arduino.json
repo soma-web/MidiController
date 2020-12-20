@@ -1,0 +1,6 @@
+{
+    "sketch": "Components.ino",
+    "port": "COM7",
+    "board": "arduino:avr:leonardo",
+    "programmer": "AVR ISP"
+}
