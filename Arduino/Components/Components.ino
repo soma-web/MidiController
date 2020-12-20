@@ -1,9 +1,10 @@
 #include "Fader.h"
 #include "Button.h"
 
+// 0 Analog pin
 Fader fader(A0);
-//digital 7 pin, 35ms to deboounce, 
-// is pullup see: https://easybtn.earias.me/docs/introduction
+
+//digital 7 pin
 Button button(DD7);
 
 void setup() {
@@ -15,20 +16,12 @@ void setup() {
 
 // the loop routine runs over and over again forever:
 void loop() {
-  // read the input on analog pin 0:
   fader.read();
-  int sensorValue = fader.getValue();
-  // print out the value you read:
-  Serial.print("Fader value: ");
-  Serial.println(sensorValue);
-  
+  Serial.println(fader.toString());
 
   
   button.read();
-  Serial.print("Is button pressed: ");
-  Serial.println(button.isPressed());
-  Serial.print("Button state changed ");
-  Serial.println(button.stateChanged());
+  Serial.println(button.toString());
   delay(100);        // delay in between reads for stability
 }
 

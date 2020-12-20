@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include "Button.h"
 
-Button::Button(int pin, boolean invert = true, boolean pullup = false)
+Button::Button(int pin, boolean invert = false, boolean pullup = false)
 {
     _pin = pin;
     _delay = 50;
@@ -53,4 +53,13 @@ void Button::resetCount(){
 
 unsigned int Button::count(){
      return _count; 
+}
+
+String Button::toString(){
+    String s = "";
+    s += "Button: " + String(_pin);
+    s += " pressed (" + String(isPressed() ? "true" : "false");
+    s += ") stateChanged (" + String(stateChanged() ? "true" : "false") + ")";
+    s += " count (" + String(_count) + ")";
+    return s;
 }
