@@ -5,19 +5,11 @@
 #include "MidiFader.h"
 #include "MidiController.h"
 
-#define MIDI_ON
-#define C3 48
-
-// #ifdef MIDI_ON
-//   MIDI_CREATE_DEFAULT_INSTANCE(); // Create an instance of the midi library
-// #endif
-
-// 0 Analog pin
-Potentiometer fader(A0);
-//digital 7 pin
 Button button(DD7);
 MidiController midiController;
-AbstractHMI* abstractArray[] = {&button, &fader};
+MidiFader midiFader(A0, 2, midiController);
+
+//AbstractHMI* abstractArray[] = {&button, &fader};
 
 void setup() {
   #ifdef DEBUG
@@ -25,18 +17,15 @@ void setup() {
     Serial.begin(9600); 
   #endif
 
-  // #ifdef MIDI_ON
-  //   MIDI.begin(MIDI_CHANNEL_OMNI); // Begin MIDI and listen to all channels
-  // #endif
-
-    fader.begin();
     button.begin();
     midiController.begin();
+    midiFader.begin();
 }
 
 // the loop routine runs over and over again forever:
 void loop() {
-  fader.read();  
+
+  midiFader.read();
   button.read();
 
   #ifdef MIDI_ON
@@ -47,16 +36,7 @@ void loop() {
     {
       value = 127;
     }
-    //MIDI.sendControlChange(2, value, 1);
-    midiController.sendControllChange(2, value, 1);
-  }
-
-  if(fader.stateChanged())
-  {
-    // MIDI.sendControlChange(1, fader.getNormalizedValue()*127, 1);
-    midiController.sendControllChange(2, fader.getNormalizedValue() * 127, 1);
-  }
-
+    midiController.sendControllChange(3, value, 1);
   #endif
 
   #ifdef DEBUG
