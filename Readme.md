@@ -9,7 +9,7 @@ Parts:
 - Pushbutton
 - Arduino Mega2560 R3
 - Resistor 1k Ohm
-
+![circuit diagram](https://github.com/soma-web/MidiController/blob/master/Assets/Parts.png?raw=true)
 
 external links and used libs:
 - https://drive.google.com/file/d/1s7BziN0kBaa-pbygHDTy4zMjjmCr-1WP/view?usp=sharing
