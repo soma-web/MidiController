@@ -2,18 +2,19 @@
 #define Fader_h
 
 #include "Arduino.h"
+#include "AbstractHMI.h"
 
-class Fader
+class Potentiometer : public AbstractHMI
 {
   public:
-    Fader(int pin);
+    Potentiometer(int pin);
     void begin();
     bool read();
+    bool stateChanged();
     int getRawValue();
     double getNormalizedValue();
-    bool stateChanged();
     String toString();
-  private:
+  protected:
     double normalize(double value);
     int _pin;
     double _maxValue = 1023;
@@ -21,8 +22,7 @@ class Fader
     int _threshold = 2;
     int _rawValue;
     bool _initialized;
-    bool _stateChanged;
- 
+    bool _stateChanged; 
 };
 
 #endif

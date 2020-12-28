@@ -2,8 +2,9 @@
 #define Button_h
 
 #include "Arduino.h"
-
-class Button
+#include "AbstractHMI.h"
+   
+class Button : public AbstractHMI
 {
   public:
     Button(int pin, boolean invert = false, boolean pullup = false);
@@ -14,7 +15,7 @@ class Button
     unsigned int count();
     void resetCount();
     String toString();
-  private:    
+  protected:    
     int _pin;
     byte _state, _lastState, _reading;
     unsigned int _count;

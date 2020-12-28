@@ -1,18 +1,18 @@
 #include "Arduino.h"
-#include "Fader.h"
+#include "Potentiometer.h"
 
-Fader::Fader(int pin){
+Potentiometer::Potentiometer(int pin){
     _pin = pin;
 }
 
-void Fader::begin()
+void Potentiometer::begin()
 {
     pinMode(_pin, INPUT);
     _rawValue = analogRead(_pin);
     _initialized = true;
 }
 
-bool Fader::read(){    
+bool Potentiometer::read(){    
     if(_initialized == false) {
         Serial.println("begin() not called");
         return false;
@@ -26,23 +26,23 @@ bool Fader::read(){
     return true;   
 }
 
-int Fader::getRawValue(){
+int Potentiometer::getRawValue(){
     return _rawValue;
 }
 
-double Fader::getNormalizedValue(){   
+double Potentiometer::getNormalizedValue(){   
     return normalize(getRawValue());
 }
 
-double Fader::normalize(double value){
+double Potentiometer::normalize(double value){
     return (value - _minValue) / (_maxValue - _minValue);
 }
 
-bool Fader::stateChanged(){
+bool Potentiometer::stateChanged(){
     return _stateChanged;
 }
 
-String Fader::toString(){
+String Potentiometer::toString(){
     String state = "";
     state += "Fader: Raw (" + String(getRawValue());
     state += ") => Normalized ("; 
