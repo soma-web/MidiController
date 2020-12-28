@@ -4,7 +4,12 @@
 Midi Controller to controll voicemeter
 
 Parts:
-https://drive.google.com/file/d/1s7BziN0kBaa-pbygHDTy4zMjjmCr-1WP/view?usp=sharing
+- https://drive.google.com/file/d/1s7BziN0kBaa-pbygHDTy4zMjjmCr-1WP/view?usp=sharing
+- Linear Potentiometer 10k Ohm Linear
+- Radial Potentiometer 10k Ohm
+- Pushbutton
+- Arduino Mega2560 R3
+- Resistor 1k Ohm
 
 
 external links and used libs:
