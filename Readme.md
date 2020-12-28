@@ -1,4 +1,10 @@
+# FAVOMI
+## Fancy Voicemeter Mixer
+
 Midi Controller to controll voicemeter
+
+Parts:
+https://drive.google.com/file/d/1s7BziN0kBaa-pbygHDTy4zMjjmCr-1WP/view?usp=sharing
 
 
 external links and used libs:
