@@ -1,11 +1,11 @@
 Equilizer rotary potentiometer (top)
-A0: Left 1st row
-A1:	Left 2nd row
-A2	Left 3rd row
+A0: Left 1st row 	[eqRotary0]
+A1:	Left 2nd row	[eqRotary1]
+A2	Left 3rd row	[eqRotary2]
 
-A3:	Right 1st row
-A4: Right 2nd row
-A5: Right 3rd row
+A3:	Right 1st row	[eqRotary3]
+A4: Right 2nd row	[eqRotary4]
+A5: Right 3rd row	[eqRotary5]
 
 linear potentiometer from left to right
 A6:
