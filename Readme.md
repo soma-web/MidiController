@@ -12,7 +12,7 @@ Parts:
 
 
 ![circuit diagram](https://github.com/soma-web/MidiController/blob/master/Assets/Parts.png?raw=true)
-![wood cutout]((https://github.com/soma-web/MidiController/blob/master/Assets/wood_cut_out.png?raw=true)
+![wood cutout](https://github.com/soma-web/MidiController/blob/master/Assets/wood_cut_out.png?raw=true)
 
 Main Class: 
 Components.ino
