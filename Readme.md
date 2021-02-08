@@ -1,7 +1,7 @@
 # FAVOMI
 ## Fancy Voicemeter Mixer
 
-Midi Controller to controll voicemeter
+Midicontroller to controll VoiceMeter https://vb-audio.com/
 
 Parts:
 - Linear Potentiometer 10k Ohm Linear
@@ -9,6 +9,10 @@ Parts:
 - Pushbutton
 - Arduino Mega2560 R3
 - Resistor 1k Ohmgit
+
+
+![circuit diagram](https://github.com/soma-web/MidiController/blob/master/Assets/Parts.png?raw=true)
+
 
 
 external links and used libs:
