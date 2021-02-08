@@ -8,7 +8,7 @@ Parts:
 - Radial Potentiometer 10k Ohm
 - Pushbutton
 - Arduino Mega2560 R3
-- Resistor 1k Ohm
+- Resistor 1k Ohmgit
 
 
 external links and used libs:
