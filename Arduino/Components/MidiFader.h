@@ -3,16 +3,16 @@
 
 #include "Arduino.h"
 #include "Potentiometer.h"
-#include "MidiController.h"
+#include "AbstractTransportController.h"
    
 class MidiFader : public Potentiometer
 {
   public:
-    MidiFader(int pin, int midiControlNumber, MidiController &midiController, int midiChannel = 1);
+    MidiFader(int pin, int midiControlNumber, AbstractTransportController &midiController, int midiChannel = 1);
     void begin();
     bool read();
   protected:      
-    MidiController &_midiController;    
+    AbstractTransportController &_midiController;    
     int _midiControlNumber;    
     int _midiChannel;
     void sendMidiCommand();

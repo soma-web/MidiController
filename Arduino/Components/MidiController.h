@@ -9,10 +9,10 @@ class MidiController
 {
     public:
         MidiController();
-        void begin();
-        void sendControllChange(byte inControlNumber, byte inControlValue,int inChannel);
-        void sendNoteOn(byte note, byte velocity, int inChannel);
-        void sendNoteOff(byte note, byte velocity, int inChannel);
+        virtual void begin();
+        virtual void sendControllChange(byte inControlNumber, byte inControlValue,int inChannel);
+        virtual void sendNoteOn(byte note, byte velocity, int inChannel);
+        virtual void sendNoteOff(byte note, byte velocity, int inChannel);
 
     private:
         bool _initialized;

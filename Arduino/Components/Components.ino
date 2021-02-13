@@ -5,11 +5,16 @@
 #include "MidiFader.h"
 #include "MidiController.h"
 #include "MidiButton.h"
+#include "DebugController.h"
+#include "AbstractTransportController.h"
 
 #define DEBUG
-
 //Button button(DD7);
+#ifdef DEBUG
+DebugController midiController;
+#else
 MidiController midiController;
+#endif
 // //equilizer rotary potis
 MidiFader eqRotary0(A0, 0, midiController);
 MidiFader eqRotary1(A1, 1, midiController);

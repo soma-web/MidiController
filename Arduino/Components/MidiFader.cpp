@@ -1,8 +1,9 @@
 #include "Arduino.h"
 #include "MidiFader.h"
 #include "MidiController.h"
+#include "AbstractTransportController.h"
 
-MidiFader::MidiFader(int pin, int midiControlNumber, MidiController &midiController, int midiChannel = 1) : Potentiometer(pin){
+MidiFader::MidiFader(int pin, int midiControlNumber, AbstractTransportController &midiController, int midiChannel = 1) : Potentiometer(pin){
     _midiControlNumber = midiControlNumber;
     _midiChannel = midiChannel;
     _midiController = midiController;
