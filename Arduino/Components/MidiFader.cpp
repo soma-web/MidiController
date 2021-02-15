@@ -6,7 +6,7 @@
 MidiFader::MidiFader(int pin, int midiControlNumber, AbstractTransportController &midiController, int midiChannel = 1) : Potentiometer(pin){
     _midiControlNumber = midiControlNumber;
     _midiChannel = midiChannel;
-    _midiController = midiController;
+    _midiController = &midiController;
 }
 
 void MidiFader::begin(){
@@ -21,5 +21,5 @@ bool MidiFader::read(){
 }
 
 void MidiFader::sendMidiCommand(){
-    _midiController.sendControllChange(_midiControlNumber, getNormalizedValue() * 127, _midiChannel);
+    _midiController->sendControllChange(_midiControlNumber, getNormalizedValue() * 127, _midiChannel);
 }

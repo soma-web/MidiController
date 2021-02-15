@@ -13,15 +13,15 @@ void DebugController::begin()
 
 void DebugController::sendControllChange(byte inControlNumber, byte inControlValue,int inChannel)
 {
-    Serial.println("<SendControllChange> ControllNumber: " + String(inControlNumber) + " ControlValue: " + String(inControlValue) + " Channel: " + String(inChannel)); 
+    Serial.println("<SendControllChange>" + String(inControlNumber) + " / " + String(inControlValue) + " / " + String(inChannel)); 
 }
 
 void DebugController::sendNoteOn(byte note, byte velocity ,int inChannel)
 {
-    Serial.println("<SendNoteOn> Note: " + String(note) + " Velocity: " + String(velocity) + " Channel: " + String(inChannel)); 
+    Serial.println("<SendNoteOn>" + String(note) + " / " + String(velocity) + " / " + String(inChannel)); 
 }
 
 void DebugController::sendNoteOff(byte note, byte velocity,int inChannel)
 {
-    Serial.println("<SendNoteOff> Note: " + String(note) + " Velocity: " + String(velocity) + " Channel: " + String(inChannel)); 
+    Serial.println("<SendNoteOff>" + String(note) + " / " + String(velocity) + " / " + String(inChannel)); 
 }
