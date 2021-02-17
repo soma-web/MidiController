@@ -11,11 +11,11 @@ class MidiFader : public Potentiometer
     MidiFader(int pin, int midiControlNumber, AbstractTransportController &midiController, int midiChannel = 1);
     void begin();
     bool read();
+    void sendMidiCommand();
   protected:      
     AbstractTransportController *_midiController;    
     int _midiControlNumber;    
     int _midiChannel;
-    void sendMidiCommand();
 
 };
 

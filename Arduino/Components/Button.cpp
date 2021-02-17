@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include "Button.h"
 
-Button::Button(int pin, boolean invert = false, boolean pullup = false)
+Button::Button(uint8_t pin, boolean invert = false, boolean pullup = true)
 {
     _pin = pin;
     _delay = 50;
@@ -9,15 +9,18 @@ Button::Button(int pin, boolean invert = false, boolean pullup = false)
     _last = millis();
     _count = 0;
     _invert = invert;
+    _pullup = pullup;
 }
 
 void Button::begin()
 {      
     _initialized = true;
+    pinMode(_pin, _pullup ? INPUT_PULLUP : INPUT);
 }
 
 bool Button::read(){    
     _reading = _invert ^ digitalRead(_pin); // get current button state.
+    //Serial.println("reading" + String(_reading));
     _stateChanged = false;
     if (_reading != _lastState)
     {                   // detect edge: current vs last state:

@@ -2,5 +2,6 @@
     "board": "arduino:avr:mega",
     "configuration": "cpu=atmega2560",
     "sketch": "Components\\Components.ino",
-    "port": "COM4"
+    "port": "COM4",
+    "programmer": "AVR ISP"
 }

@@ -7,7 +7,7 @@
 class Button : public AbstractHMI
 {
   public:
-    Button(int pin, boolean invert = false, boolean pullup = false);
+    Button(uint8_t pin, boolean invert = false, boolean pullup = true);
     void begin();
     bool read();
     bool isPressed();
@@ -16,7 +16,7 @@ class Button : public AbstractHMI
     void resetCount();
     String toString();
   protected:    
-    int _pin;
+    uint8_t _pin;
     byte _state, _lastState, _reading;
     unsigned int _count;
     unsigned long _delay, _last;
@@ -24,6 +24,7 @@ class Button : public AbstractHMI
     boolean _invert;
     boolean _initialized;    
     boolean _stateChanged;
+    boolean _pullup;
 };
 
 #endif

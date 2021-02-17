@@ -1,11 +1,11 @@
 #include "Arduino.h"
 #include "MidiButton.h"
-#include "MidiController.h"
+#include "AbstractTransportController.h"
 
-MidiButton::MidiButton(int pin, int midiControlNumber, MidiController &midiController, int midiChannel = 1) : Button(pin){
+MidiButton::MidiButton(int pin, int midiControlNumber, AbstractTransportController &midiController, int midiChannel = 1) : Button(pin){
     _midiControlNumber = midiControlNumber;
     _midiChannel = midiChannel;
-    _midiController = midiController;
+    _midiController = &midiController;
 }
 
 void MidiButton::begin(){
@@ -21,5 +21,5 @@ bool MidiButton::read(){
 
 void MidiButton::sendMidiCommand(){
     int value = Button::isPressed() ? 127 : 0;
-    _midiController.sendControllChange(_midiControlNumber, value, _midiChannel);
+    _midiController->sendControllChange(_midiControlNumber, value, _midiChannel);
 }
