@@ -51,12 +51,12 @@ MidiController midiController;
 const int buttonPinArray[] = {
   22, 24, 26, 28, 30, 32, 34, 36, 23, 25, 27, 29, 31, 33,
 };
-const int buttonPinArraySize = sizeof(buttonPinArray) / buttonPinArray[0];;
+const int buttonPinArraySize = 14;
 
 const int faderPinArray[] = {
   A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13,
 };
-const int faderPinArraySize = sizeof(faderPinArray) / faderPinArray[0];
+const int faderPinArraySize = 14;
 
 const int midiComponentCount = faderPinArraySize + buttonPinArraySize;
 AbstractHMI* midiComponentArray[midiComponentCount]; 
@@ -69,8 +69,8 @@ void SetupAbstractHMIArray();
 void setup() 
 {
   midiController.begin(); 
-  synchornizeButton.begin();
-  
+  // synchornizeButton.begin();
+
   SetupAbstractHMIArray();
 }
 
@@ -80,31 +80,35 @@ void loop()
     midiComponentArray[i]->read();
   }
 
-  synchornizeButton.read();
-
-  if(synchornizeButton.stateChanged() && synchornizeButton.isPressed()){
-    SynchronizeAll();
-  }
+  // synchornizeButton.read();
+  // if(synchornizeButton.stateChanged() && synchornizeButton.isPressed()){
+  //   SynchronizeAll();
+  // }
 
   delay(100);        // delay in between reads for stability
 }
 
 void SetupAbstractHMIArray()
 {
+  int midiComponentArrayPosition = 0;
+  #ifdef DEBUG
+  Serial.println("fader count: " + String(faderPinArraySize));
+  Serial.println("button count: " + String(buttonPinArraySize));
+  #endif
+
   //start fader with midiControllNbr 0
   int midiControllNbr = 0;
-  int midiComponentArrayPosition = 0;
   for(int i = 0; i < faderPinArraySize; i++, midiComponentArrayPosition++){
     int midiControllNumber = midiControllNbr + i;
-    midiComponentArray[midiComponentArrayPosition] = new MidiFader(faderPinArray[i], midiControllNumber, midiController);
-    midiComponentArray[midiComponentArrayPosition]->begin();
+    midiComponentArray[i] = new MidiFader(faderPinArray[i], midiControllNumber, midiController);
+    midiComponentArray[i]->begin();
   }
 
   //start buttons with contollNbr 50 
   midiControllNbr = 50;
   for(int i = 0; i < buttonPinArraySize; i++, midiComponentArrayPosition++){
     int midiControllNumber = midiControllNbr + i;
-    midiComponentArray[midiComponentArrayPosition] = new MidiFader(buttonPinArray[i], midiControllNumber, midiController);
+    midiComponentArray[midiComponentArrayPosition] = new MidiButton(buttonPinArray[i], midiControllNumber, midiController);
     midiComponentArray[midiComponentArrayPosition]->begin();
   }
 }
