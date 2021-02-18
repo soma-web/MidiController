@@ -13,6 +13,7 @@ class Potentiometer : public AbstractHMI
     bool stateChanged();
     int getRawValue();
     double getNormalizedValue();
+    void forceUpdate();
     String toString();
   protected:
     double normalize(double value);

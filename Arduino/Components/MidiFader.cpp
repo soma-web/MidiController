@@ -23,3 +23,7 @@ bool MidiFader::read(){
 void MidiFader::sendMidiCommand(){
     _midiController->sendControllChange(_midiControlNumber, getNormalizedValue() * 127, _midiChannel);
 }
+
+void MidiFader::forceUpdate(){
+    sendMidiCommand();
+}
