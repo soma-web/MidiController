@@ -10,7 +10,7 @@
 #include "NullTransport.h"
 /// avoid digital pin 52, this seems to be broken
 
-#define DEBUG
+//#define DEBUG
 
 #ifdef DEBUG
 DebugController midiController;
@@ -25,7 +25,7 @@ const int buttonPinArray[] = {
 const int buttonPinArraySize = 14;
 
 const int potentiometerPinArray[] = {
-   A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13,
+   A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A11 + 1, A11 + 2,
 };
 const int potentiometerPinArraySize = 14;
 
@@ -81,7 +81,7 @@ void SetupAbstractHMIArray()
   midiControllNbr = 50;
   for(int i = 0; i < buttonPinArraySize; i++, midiComponentArrayPosition++){
     int midiControllNumber = midiControllNbr + i;
-    midiComponentArray[midiComponentArrayPosition] = new MidiButton(buttonPinArray[i], midiControllNumber, nulltransport);
+    midiComponentArray[midiComponentArrayPosition] = new MidiButton(buttonPinArray[i], midiControllNumber, midiController);
     midiComponentArray[midiComponentArrayPosition]->begin();
   }
 }
