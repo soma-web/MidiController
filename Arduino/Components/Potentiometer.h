@@ -20,7 +20,7 @@ class Potentiometer : public AbstractHMI
     int _pin;
     double _maxValue = 1023;
     double _minValue = 0;
-    int _threshold = 2;
+    int _threshold = 5;
     int _rawValue;
     bool _initialized;
     bool _stateChanged; 
