@@ -9,6 +9,7 @@ class AbstractHMI
     virtual void begin() = 0;
     virtual bool read() = 0;
     virtual bool stateChanged() = 0;
+    virtual void forceUpdate() = 0;
 };
 
 #endif

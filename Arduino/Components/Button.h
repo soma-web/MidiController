@@ -14,6 +14,7 @@ class Button : public AbstractHMI
     bool stateChanged();
     unsigned int count();
     void resetCount();
+    void forceUpdate();
     String toString();
   protected:    
     uint8_t _pin;

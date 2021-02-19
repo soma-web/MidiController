@@ -9,6 +9,7 @@ DebugController::DebugController(){
 void DebugController::begin()
 {
     Serial.begin(9600);
+    Serial.println("beginning debug controller");
 }
 
 void DebugController::sendControllChange(byte inControlNumber, byte inControlValue,int inChannel)

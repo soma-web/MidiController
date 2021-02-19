@@ -54,6 +54,10 @@ void Button::resetCount(){
      _count = 0;
 }
 
+void Button::forceUpdate(){
+
+}
+
 unsigned int Button::count(){
      return _count; 
 }

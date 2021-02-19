@@ -38,6 +38,10 @@ double Potentiometer::normalize(double value){
     return (value - _minValue) / (_maxValue - _minValue);
 }
 
+void Potentiometer::forceUpdate(){
+    
+}
+
 bool Potentiometer::stateChanged(){
     return _stateChanged;
 }

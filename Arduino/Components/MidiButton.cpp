@@ -23,3 +23,7 @@ void MidiButton::sendMidiCommand(){
     int value = Button::isPressed() ? 127 : 0;
     _midiController->sendControllChange(_midiControlNumber, value, _midiChannel);
 }
+
+void MidiButton::forceUpdate(){
+    sendMidiCommand();
+}

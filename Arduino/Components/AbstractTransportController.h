@@ -2,7 +2,6 @@
 #define AbstractTransportController_h
 
 #include "Arduino.h"
-#include "MidiController.h"
 
 class AbstractTransportController
 {

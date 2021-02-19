@@ -12,6 +12,7 @@ class MidiFader : public Potentiometer
     void begin();
     bool read();
     void sendMidiCommand();
+    void forceUpdate();
   protected:      
     AbstractTransportController *_midiController;    
     int _midiControlNumber;    
