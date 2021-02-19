@@ -8,7 +8,7 @@
 class MidiFader : public Potentiometer
 {
   public:
-    MidiFader(int pin, int midiControlNumber, AbstractTransportController &midiController, int midiChannel = 1);
+    MidiFader(int pin, int midiControlNumber, AbstractTransportController &midiController, bool invert = false, int midiChannel = 1);
     void begin();
     bool read();
     void sendMidiCommand();

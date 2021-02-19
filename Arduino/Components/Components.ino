@@ -10,7 +10,7 @@
 #include "NullTransport.h"
 /// avoid digital pin 52, this seems to be broken
 
-//#define DEBUG
+#define DEBUG
 
 #ifdef DEBUG
 DebugController midiController;
@@ -24,12 +24,17 @@ const int buttonPinArray[] = {
 };
 const int buttonPinArraySize = 14;
 
-const int potentiometerPinArray[] = {
-   A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A11 + 1, A11 + 2,
+const int linearPotentiometerPinArray[] = {
+   A6, A7, A8, A9, A10, A11, 
 };
-const int potentiometerPinArraySize = 14;
+const int linearPotentiometerPinArraySize = 6;
 
-const int midiComponentCount = potentiometerPinArraySize;// + buttonPinArraySize;
+const int rotaryPotentiometerPinArray[] = {
+  A0, A1, A2, A3, A4, A5, A11 + 1, A11 + 2,
+};
+const int rotaryPotentiometerPinArraySize = 8;
+
+const int midiComponentCount = linearPotentiometerPinArraySize + rotaryPotentiometerPinArraySize + buttonPinArraySize;
 AbstractHMI* midiComponentArray[midiComponentCount]; 
 
 
@@ -65,16 +70,23 @@ void SetupAbstractHMIArray()
   int midiComponentArrayPosition = 0;
 
   #ifdef DEBUG
-  Serial.println("fader count: " + String(potentiometerPinArraySize));
+  Serial.println("rotarypoti count: " + String(rotaryPotentiometerPinArraySize));
+  Serial.println("linearfader count: " + String(linearPotentiometerPinArraySize));
   Serial.println("button count: " + String(buttonPinArraySize));
   #endif
 
   //start fader with midiControllNbr 0
   int midiControllNbr = 0;
-  for(int i = 0; i < potentiometerPinArraySize; i++, midiComponentArrayPosition++){
-    int midiControllNumber = midiControllNbr + i;
-    midiComponentArray[i] = new MidiFader(potentiometerPinArray[i], midiControllNumber, midiController);
-    midiComponentArray[i]->begin();
+  for(int i = 0; i < rotaryPotentiometerPinArraySize; i++, midiComponentArrayPosition++){
+    int midiControllNumber = midiComponentArrayPosition;
+    midiComponentArray[midiComponentArrayPosition] = new MidiFader(rotaryPotentiometerPinArray[i], midiControllNumber, midiController);
+    midiComponentArray[midiComponentArrayPosition]->begin();
+  }
+
+  for(int i = 0; i < linearPotentiometerPinArraySize; i++, midiComponentArrayPosition++){
+    int midiControllNumber = midiComponentArrayPosition;
+    midiComponentArray[midiComponentArrayPosition] = new MidiFader(linearPotentiometerPinArray[i], midiControllNumber, midiController, true);
+    midiComponentArray[midiComponentArrayPosition]->begin();
   }
 
   //start buttons with contollNbr 50 

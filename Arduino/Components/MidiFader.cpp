@@ -2,10 +2,11 @@
 #include "MidiFader.h"
 #include "AbstractTransportController.h"
 
-MidiFader::MidiFader(int pin, int midiControlNumber, AbstractTransportController &midiController, int midiChannel = 1) : Potentiometer(pin){
+MidiFader::MidiFader(int pin, int midiControlNumber, AbstractTransportController &midiController, bool invert = false, int midiChannel = 1) : Potentiometer(pin){
     _midiControlNumber = midiControlNumber;
     _midiChannel = midiChannel;
-    _midiController = &midiController;   
+    _midiController = &midiController;  
+    _invert = invert; 
 }
 
 void MidiFader::begin(){

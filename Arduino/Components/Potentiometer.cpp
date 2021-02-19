@@ -8,7 +8,7 @@ Potentiometer::Potentiometer(int pin){
 void Potentiometer::begin()
 {
     pinMode(_pin, INPUT);
-    _rawValue = analogRead(_pin);
+    _rawValue = readFromPin();
     _initialized = true;
 }
 
@@ -19,11 +19,19 @@ bool Potentiometer::read(){
     }
     _stateChanged = false;
     int oldValue = _rawValue;
-    if(abs(analogRead(_pin) - oldValue) > _threshold ){
-         _rawValue = analogRead(_pin);
+    if(abs(readFromPin() - oldValue) > _threshold ){
+         _rawValue = readFromPin();
         _stateChanged = true;
     }
     return true;   
+}
+
+int Potentiometer::readFromPin(){
+    if(_invert){
+        return _maxValue - analogRead(_pin);
+    }else{
+        return analogRead(_pin);
+    }
 }
 
 int Potentiometer::getRawValue(){

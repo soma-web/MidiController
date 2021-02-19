@@ -16,10 +16,12 @@ class Potentiometer : public AbstractHMI
     void forceUpdate();
     String toString();
   protected:
+    int readFromPin();
     double normalize(double value);
     int _pin;
     double _maxValue = 1023;
     double _minValue = 0;
+    bool _invert;
     int _threshold = 5;
     int _rawValue;
     bool _initialized;
