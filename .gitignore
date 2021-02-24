@@ -1,1 +1,10 @@
 *.psd
+
+#VS Files
+bin/
+obj/
+packages/
+.vs/
+*.csproj.user
+*.csproj.*
+*.cache

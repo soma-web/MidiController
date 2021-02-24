@@ -1,0 +1,47 @@
+﻿MIDI Device: MocoLUFA
+#Example config file.
+#Solo inputs
+
+53 0..127 fullRangeToggle => Strip[0].A1 0..1; # End of line comment?
+52 0..127 fullRangeToggle => Strip[0].A2 0..1;
+54 0..127 fullRangeToggle => Strip[0].B1 0..1;
+
+55 0..127 fullRangeToggle => Strip[1].A1 0..1; # End of line comment?
+56 0..127 fullRangeToggle => Strip[1].A2 0..1;
+57 0..127 fullRangeToggle => Strip[1].B1 0..1;
+
+60 0..127 fullRangeToggle => Strip[5].A1 0..1; # End of line comment?
+59 0..127 fullRangeToggle => Strip[5].A2 0..1;
+58 0..127 fullRangeToggle => Strip[5].B1 0..1;
+
+63 0..127 fullRangeToggle => Strip[6].A1 0..1; # End of line comment?
+62 0..127 fullRangeToggle => Strip[6].A2 0..1;
+61 0..127 fullRangeToggle => Strip[6].B1 0..1;
+
+51 0..127 fullRangeToggle => Bus[5].Mute 0..1; # End of line comment?
+50 0..127 fullRangeToggle => Bus[6].Mute 0..1;
+
+#eq
+0 0..127  => Strip[5].EQGain3 -12..12;
+1 0..127  => Strip[5].EQGain2 -12..12;
+2 0..127  => Strip[5].EQGain1 -12..12;
+
+3 0..127  => Strip[6].EQGain3 -12..12;
+4 0..127  => Strip[6].EQGain2 -12..12;
+5 0..127  => Strip[6].EQGain1 -12..12;
+
+#Gains
+9 0..127 => Strip[0].Gain -60..12;
+8 0..127 => Strip[1].Gain -60..12;
+10 0..127 => Strip[5].Gain -60..12;
+11 0..127 => Strip[6].Gain -60..12;
+12 0..127 => Bus[0].Gain -60..0;
+13 0..127 => Bus[1].Gain -60..0;
+
+7 0..127 => Bus[5].Gain -60..0;
+6 0..127 => Bus[6].Gain -60..0;
+
+
+
+
+
