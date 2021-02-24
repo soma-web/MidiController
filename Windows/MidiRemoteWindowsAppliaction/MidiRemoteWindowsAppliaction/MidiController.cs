@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace MidiRemoteWindowsAppliaction
 {
-    class MidiController : IDisposable
+    public class MidiController : IDisposable
     {
         private Config config;
         private Dictionary<int, BindingLine> inputMap;
@@ -23,9 +23,12 @@ namespace MidiRemoteWindowsAppliaction
 
         private Timer updateTimer;
         private InputIndicator inputIndindicator;
-        public MidiController(InputIndicator inputIndindicator, Action<Exception> errorHandler = null)
+        private ConnectionInfo connectionInfo;
+        public MidiController(InputIndicator inputIndindicator, ConnectionInfo connectionInfo, Action<Exception> errorHandler = null)
         {
             this.inputIndindicator = inputIndindicator;
+            this.connectionInfo = connectionInfo;
+
             OnError += errorHandler;
             config = Config.Load();
             inputMap = config.Bindings.Where(x => (x.Dir & BindingDir.FromBoard) != 0).ToDictionary(x => x.ControlId);
@@ -47,6 +50,11 @@ namespace MidiRemoteWindowsAppliaction
             }
             Log.Debug(this, "Cleanup done...");
             running = false;
+        }
+
+        public void SendSyncCommand()
+        {
+            outputDevice?.Send(new ChannelMessage(ChannelCommand.Controller, 0, 99, 99));
         }
 
         private void Update(object sender, EventArgs e)
@@ -121,10 +129,12 @@ namespace MidiRemoteWindowsAppliaction
             disps.Add(voiceMeter);
         }
 
+  
+
         void InitOutputDevice()
         {
             var outputId = GetMidiOutputDevice(config.DeviceName);
-            if (outputId > 0)
+            if (outputId >= 0)
             {
                 outputDevice = new OutputDevice(outputId);
             }
@@ -133,16 +143,23 @@ namespace MidiRemoteWindowsAppliaction
 
         void InitInputputDevice()
         {
-            var inputId = GetMidiInputDevice(config.DeviceName);
-            if (inputId > 0)
+            var inputDevice = GetMidiInputDevice(config.DeviceName);
+            var inputId = inputDevice.Item2;
+            var inputName = inputDevice.Item1;
+            if (inputId >= 0)
             {
-                inputDevice = new InputDevice(inputId);
-                inputDevice.Error += (sender, errArgs) => { Log.Debug(this, "Error: " + errArgs.Error + " from: " + sender); OnError?.Invoke(new Exception("Error: " + errArgs.Error + " from: " + sender)); };
-
-                inputDevice.ChannelMessageReceived += OnMidiCommandReceived;
-                inputDevice.StartRecording();
+                this.inputDevice = new InputDevice(inputId);
+                this.inputDevice.Error += (sender, errArgs) => { connectionInfo.Status = ConnectionInfo.ConnectionStatus.Disconnected; Log.Debug(this, "Error: " + errArgs.Error + " from: " + sender); OnError?.Invoke(new Exception("Error: " + errArgs.Error + " from: " + sender)); };                
+                this.inputDevice.ChannelMessageReceived += OnMidiCommandReceived;
+                this.inputDevice.StartRecording();
+                connectionInfo.Status = ConnectionInfo.ConnectionStatus.Connected;
+                connectionInfo.DeviceName = inputName;
             }
-            disps.Add(inputDevice);
+            else
+            {
+                Log.Debug(this, "No Input Device Found");
+            }
+            disps.Add(this.inputDevice);
         }
 
         private int GetMidiOutputDevice(string partialDeviceName)
@@ -158,16 +175,16 @@ namespace MidiRemoteWindowsAppliaction
             //throw new Exception($"Cannot find output midi device with '{partialDeviceName}' in the name.");
         }
 
-        private int GetMidiInputDevice(string partialDeviceName)
+        private Tuple<string,int> GetMidiInputDevice(string partialDeviceName)
         {
             for (int i = 0; i < InputDevice.DeviceCount; i++)
             {
                 var info = InputDevice.GetDeviceCapabilities(i);
                 if (info.name.Contains(partialDeviceName))
-                    return i;
+                    return new Tuple<string, int>(info.name, i);
             }
             OnError?.Invoke(new Exception($"Cannot find input midi device with '{partialDeviceName}' in the name."));
-            return -1;
+            return new Tuple<string, int>(null, -1);
         }
 
         private static float Scale(float value, float fromMin, float fromMax, float toMin, float toMax)

@@ -16,10 +16,17 @@ namespace MidiRemoteWindowsAppliaction
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var form = new VoiceMeterMidi();
             Log.Init();
-            MidiController midiController = new MidiController(new InputIndicator(form.Indicator, "BackColor"));
+            var form = new VoiceMeterMidi();
+            var indicator = new InputIndicator(form.Indicator, "BackColor");
+            var connectionInfo = new ConnectionInfo();
+            form.SetConnectionInfo(connectionInfo);
+            MidiController midiController = new MidiController(indicator, connectionInfo);
+            form.SetMidiController(midiController);
             Application.Run(form);
+
+            Log.Debug("Programm", "Closing");
+            midiController.Dispose();
         }
     }
 }

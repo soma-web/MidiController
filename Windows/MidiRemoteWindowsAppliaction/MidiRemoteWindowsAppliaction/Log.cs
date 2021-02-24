@@ -4,8 +4,7 @@ using System.IO;
 namespace MidiRemoteWindowsAppliaction
 {
     class Log
-    {
-        static Log _instance;
+    {      
         public static string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MidiRemoteWindowsAppliaction/");
         static string file = Path.Combine(path, "log.txt");
 
@@ -30,6 +29,7 @@ namespace MidiRemoteWindowsAppliaction
 
         public static void Debug(object tag, string message)
         {
+            Console.WriteLine(String.Format("<{0}> \t <{1}>", tag.GetType().Name, message));
             File.AppendAllText(file, String.Format("<{0}> \t <{1}> {2}", tag.GetType().Name, message, System.Environment.NewLine));
         }
     }

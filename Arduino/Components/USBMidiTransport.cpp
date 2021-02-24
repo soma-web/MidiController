@@ -6,10 +6,23 @@ MIDI_CREATE_DEFAULT_INSTANCE();
 
 void USBMidiTransport::begin()
 {
-     MIDI.begin(0);
+    MIDI.begin(MIDI_CHANNEL_OMNI);
+    MIDI.turnThruOff();   
 }
 
-void USBMidiTransport::sendControllChange(byte inControlNumber, byte inControlValue,int inChannel)
+void USBMidiTransport::read(){
+    MIDI.read();
+}
+
+void USBMidiTransport::addReceiveCallBack(MidiControlChangeCallback fptr){
+    MIDI.setHandleControlChange(fptr);
+}
+
+void USBMidiTransport::HandleControlChange(byte channel, byte number, byte value) {
+    MIDI.sendControlChange(10, 127, 1);
+}
+
+void USBMidiTransport::sendControllChange(byte inControlNumber, byte inControlValue, int inChannel)
 {
     MIDI.sendControlChange(inControlNumber, inControlValue, inChannel);
 }
@@ -17,6 +30,7 @@ void USBMidiTransport::sendControllChange(byte inControlNumber, byte inControlVa
 void USBMidiTransport::sendNoteOn(byte note, byte velocity ,int inChannel)
 {
     MIDI.sendNoteOn(note, velocity, inChannel);
+   
 }
 
 void USBMidiTransport::sendNoteOff(byte note, byte velocity,int inChannel)

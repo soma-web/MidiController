@@ -41,14 +41,19 @@ AbstractHMI* midiComponentArray[midiComponentCount];
 Button synchornizeButton(44);
 void SynchronizeAll();
 void SetupAbstractHMIArray();
+void HandleControllChangeReceive(byte channel, byte number, byte value);
 
 void setup() 
 {
   midiController.begin(); 
+  midiController.addReceiveCallBack(HandleControllChangeReceive);
   SetupAbstractHMIArray();
 
   //synchornizeButton.begin();
 }
+
+
+
 
 void loop() 
 {
@@ -56,6 +61,7 @@ void loop()
     midiComponentArray[i]->read();
   }
 
+  midiController.read();
   // no hadware for that so we skip it atm
   // synchornizeButton.read();
   // if(synchornizeButton.stateChanged() && synchornizeButton.isPressed()){
@@ -63,6 +69,12 @@ void loop()
   // }
 
   delay(100);        // delay in between reads for stability
+}
+
+void HandleControllChangeReceive(byte channel, byte number, byte value)
+{
+  midiController.sendControllChange(10,127,1);
+  SynchronizeAll();
 }
 
 void SetupAbstractHMIArray()

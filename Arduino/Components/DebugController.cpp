@@ -12,6 +12,10 @@ void DebugController::begin()
     Serial.println("beginning debug controller");
 }
 
+void DebugController::read(){ }
+
+void DebugController::addReceiveCallBack(MidiControlChangeCallback fptr){ }
+
 void DebugController::sendControllChange(byte inControlNumber, byte inControlValue,int inChannel)
 {
     Serial.println("<SendControllChange>" + String(inControlNumber) + " / " + String(inControlValue) + " / " + String(inChannel)); 

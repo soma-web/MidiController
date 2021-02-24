@@ -13,16 +13,27 @@ namespace MidiRemoteWindowsAppliaction
 {
     public partial class VoiceMeterMidi : Form
     {
-        private bool toggle;
-
         public Panel Indicator { get => panelMidiIn; }
+
+        private MidiController midiController;
 
         public VoiceMeterMidi()
         {
-            InitializeComponent();
+            InitializeComponent();            
             btConfig.Click += new EventHandler(this.OnConfigButtonClick);
             //panelMidiIn.DataBindings.Add("BackColor", this, "Background");
             Console.WriteLine("Init");
+        }
+
+        internal void SetMidiController(MidiController midiController)
+        {
+            this.midiController = midiController;
+        }
+
+        public void SetConnectionInfo(ConnectionInfo connectionInfo)
+        {
+            lbDeviceName.DataBindings.Add("Text", connectionInfo, "DeviceName");
+            lbConnectionStatus.DataBindings.Add("Text", connectionInfo, "Status");
         }
 
         private void OnConfigButtonClick(object sender, EventArgs e)
@@ -48,6 +59,25 @@ namespace MidiRemoteWindowsAppliaction
             this.WindowState = FormWindowState.Normal;
             notifyIcon1.Visible = false;
         }
+
+        private void lbDeviceNameLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbConnectionStatusLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btSync_Click(object sender, EventArgs e)
+        {
+            midiController.SendSyncCommand();
+        }
+
+
+
+
 
         //private void OnKeyDown(object sender, KeyEventArgs e)
         //{

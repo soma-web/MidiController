@@ -57,6 +57,7 @@
     <Compile Include="Configuration\ConfigParsing.cs" />
     <Compile Include="Configuration\BindingLine.cs" />
     <Compile Include="Configuration\DeviceLine.cs" />
+    <Compile Include="ConnectionInfo.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
