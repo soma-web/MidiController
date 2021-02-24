@@ -10,7 +10,7 @@
 #include "NullTransport.h"
 /// avoid digital pin 52, this seems to be broken
 
-#define DEBUG
+//#define DEBUG
 
 #ifdef DEBUG
 DebugController midiController;
