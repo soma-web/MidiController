@@ -42,6 +42,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btSync = new System.Windows.Forms.Button();
+            this.btReconnect = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -56,9 +57,9 @@
             // 
             // btConfig
             // 
-            this.btConfig.Location = new System.Drawing.Point(15, 170);
+            this.btConfig.Location = new System.Drawing.Point(12, 210);
             this.btConfig.Name = "btConfig";
-            this.btConfig.Size = new System.Drawing.Size(95, 36);
+            this.btConfig.Size = new System.Drawing.Size(98, 36);
             this.btConfig.TabIndex = 0;
             this.btConfig.Text = "Config Folder";
             this.btConfig.UseVisualStyleBackColor = true;
@@ -161,11 +162,21 @@
             this.btSync.UseVisualStyleBackColor = true;
             this.btSync.Click += new System.EventHandler(this.btSync_Click);
             // 
+            // btReconnect
+            // 
+            this.btReconnect.Location = new System.Drawing.Point(15, 170);
+            this.btReconnect.Name = "btReconnect";
+            this.btReconnect.Size = new System.Drawing.Size(95, 34);
+            this.btReconnect.TabIndex = 6;
+            this.btReconnect.Text = "Reconncet";
+            this.btReconnect.UseVisualStyleBackColor = true;
+            // 
             // VoiceMeterMidi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(303, 218);
+            this.ClientSize = new System.Drawing.Size(303, 339);
+            this.Controls.Add(this.btReconnect);
             this.Controls.Add(this.btSync);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label2);
@@ -199,6 +210,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btSync;
+        private System.Windows.Forms.Button btReconnect;
     }
 }
 

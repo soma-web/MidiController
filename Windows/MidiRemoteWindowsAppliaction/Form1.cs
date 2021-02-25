@@ -21,8 +21,14 @@ namespace MidiRemoteWindowsAppliaction
         {
             InitializeComponent();            
             btConfig.Click += new EventHandler(this.OnConfigButtonClick);
+            btReconnect.Click += new EventHandler(this.OnReconnectClick);
             //panelMidiIn.DataBindings.Add("BackColor", this, "Background");
             Console.WriteLine("Init");
+        }
+
+        private void OnReconnectClick(object sender, EventArgs e)
+        {
+            this.midiController.Reconnect();
         }
 
         internal void SetMidiController(MidiController midiController)

@@ -44,12 +44,23 @@ namespace MidiRemoteWindowsAppliaction
         {
             Log.Debug(this, "Exiting...");
             //Thread.Sleep(5000);
+            running = false;
             foreach (var x in disps)
             {
                 x?.Dispose();
             }
             Log.Debug(this, "Cleanup done...");
+        }
+
+        public void Reconnect()
+        {
             running = false;
+            disps.Clear();
+            inputDevice.Dispose();
+            outputDevice.Dispose();
+            InitOutputDevice();
+            InitInputputDevice();
+            running = true;
         }
 
         public void SendSyncCommand()
