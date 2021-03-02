@@ -43,8 +43,15 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btSync = new System.Windows.Forms.Button();
             this.btReconnect = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startWithWindowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon1
@@ -57,7 +64,7 @@
             // 
             // btConfig
             // 
-            this.btConfig.Location = new System.Drawing.Point(193, 130);
+            this.btConfig.Location = new System.Drawing.Point(116, 96);
             this.btConfig.Name = "btConfig";
             this.btConfig.Size = new System.Drawing.Size(98, 36);
             this.btConfig.TabIndex = 0;
@@ -66,15 +73,15 @@
             // 
             // panelMidiIn
             // 
-            this.panelMidiIn.Location = new System.Drawing.Point(50, 6);
+            this.panelMidiIn.Location = new System.Drawing.Point(44, 10);
             this.panelMidiIn.Name = "panelMidiIn";
-            this.panelMidiIn.Size = new System.Drawing.Size(17, 17);
+            this.panelMidiIn.Size = new System.Drawing.Size(11, 13);
             this.panelMidiIn.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 10);
+            this.label1.Location = new System.Drawing.Point(-3, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 2;
@@ -86,7 +93,7 @@
             this.panel1.Controls.Add(this.lbDeviceNameLabel);
             this.panel1.Controls.Add(this.lbConnectionStatus);
             this.panel1.Controls.Add(this.lbConnectionStatusLabel);
-            this.panel1.Location = new System.Drawing.Point(15, 25);
+            this.panel1.Location = new System.Drawing.Point(3, 19);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(211, 44);
             this.panel1.TabIndex = 3;
@@ -105,7 +112,7 @@
             // lbDeviceNameLabel
             // 
             this.lbDeviceNameLabel.AutoSize = true;
-            this.lbDeviceNameLabel.Location = new System.Drawing.Point(4, 20);
+            this.lbDeviceNameLabel.Location = new System.Drawing.Point(-3, 20);
             this.lbDeviceNameLabel.Name = "lbDeviceNameLabel";
             this.lbDeviceNameLabel.Size = new System.Drawing.Size(72, 13);
             this.lbDeviceNameLabel.TabIndex = 2;
@@ -127,7 +134,7 @@
             // lbConnectionStatusLabel
             // 
             this.lbConnectionStatusLabel.AutoSize = true;
-            this.lbConnectionStatusLabel.Location = new System.Drawing.Point(4, 4);
+            this.lbConnectionStatusLabel.Location = new System.Drawing.Point(-3, 7);
             this.lbConnectionStatusLabel.Name = "lbConnectionStatusLabel";
             this.lbConnectionStatusLabel.Size = new System.Drawing.Size(91, 13);
             this.lbConnectionStatusLabel.TabIndex = 0;
@@ -137,7 +144,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Location = new System.Drawing.Point(0, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 4;
@@ -147,14 +154,14 @@
             // 
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.panelMidiIn);
-            this.panel2.Location = new System.Drawing.Point(15, 85);
+            this.panel2.Location = new System.Drawing.Point(3, 55);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(109, 27);
             this.panel2.TabIndex = 0;
             // 
             // btSync
             // 
-            this.btSync.Location = new System.Drawing.Point(15, 130);
+            this.btSync.Location = new System.Drawing.Point(3, 96);
             this.btSync.Name = "btSync";
             this.btSync.Size = new System.Drawing.Size(95, 34);
             this.btSync.TabIndex = 5;
@@ -164,26 +171,68 @@
             // 
             // btReconnect
             // 
-            this.btReconnect.Location = new System.Drawing.Point(15, 170);
+            this.btReconnect.Location = new System.Drawing.Point(3, 136);
             this.btReconnect.Name = "btReconnect";
             this.btReconnect.Size = new System.Drawing.Size(95, 34);
             this.btReconnect.TabIndex = 6;
             this.btReconnect.Text = "Reconncet";
             this.btReconnect.UseVisualStyleBackColor = true;
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.panel1);
+            this.panel3.Controls.Add(this.btReconnect);
+            this.panel3.Controls.Add(this.btConfig);
+            this.panel3.Controls.Add(this.btSync);
+            this.panel3.Controls.Add(this.label2);
+            this.panel3.Controls.Add(this.panel2);
+            this.panel3.Location = new System.Drawing.Point(12, 58);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(250, 210);
+            this.panel3.TabIndex = 7;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(283, 24);
+            this.menuStrip1.TabIndex = 8;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.optionsToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.startWithWindowsToolStripMenuItem});
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.optionsToolStripMenuItem.Text = "Options";
+            // 
+            // startWithWindowsToolStripMenuItem
+            // 
+            this.startWithWindowsToolStripMenuItem.Name = "startWithWindowsToolStripMenuItem";
+            this.startWithWindowsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.startWithWindowsToolStripMenuItem.Text = "Start With Windows";
+            // 
             // VoiceMeterMidi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(303, 226);
-            this.Controls.Add(this.btReconnect);
-            this.Controls.Add(this.btSync);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btConfig);
+            this.ClientSize = new System.Drawing.Size(283, 294);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "VoiceMeterMidi";
             this.Text = "VoiceMeterMidi";
@@ -192,6 +241,10 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -212,6 +265,11 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btSync;
         private System.Windows.Forms.Button btReconnect;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startWithWindowsToolStripMenuItem;
     }
 }
 

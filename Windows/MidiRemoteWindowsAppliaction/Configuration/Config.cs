@@ -13,7 +13,8 @@ namespace MidiRemoteWindowsAppliaction.Configuration
         public static string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MidiRemoteWindowsAppliaction/");
         public static string file = Path.Combine(path, "/config.txt");
 
-        static bool overwrite = true;
+        static bool overwrite = false;
+
         private Config()
         {
             Bindings = new List<BindingLine>();           

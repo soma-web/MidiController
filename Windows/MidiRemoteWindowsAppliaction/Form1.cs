@@ -4,10 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Win32;
+using IWshRuntimeLibrary;
 
 namespace MidiRemoteWindowsAppliaction
 {
@@ -16,14 +19,52 @@ namespace MidiRemoteWindowsAppliaction
         public Panel Indicator { get => panelMidiIn; }
 
         private MidiController midiController;
+        private static string shortcutPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\MidiRemote.lnk");
+
+        //Startup registry key and value
+        private static readonly string StartupKey = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
+        private static readonly string StartupValue = "MidiRemoteController";
 
         public VoiceMeterMidi()
         {
-            InitializeComponent();            
+            InitializeComponent();
             btConfig.Click += new EventHandler(this.OnConfigButtonClick);
             btReconnect.Click += new EventHandler(this.OnReconnectClick);
+            startWithWindowsToolStripMenuItem.Click += new EventHandler(this.OnStartWithWindowsClicked);
+            startWithWindowsToolStripMenuItem.Checked = System.IO.File.Exists(shortcutPath);
+
             //panelMidiIn.DataBindings.Add("BackColor", this, "Background");
             Console.WriteLine("Init");
+        }
+
+        private void OnStartWithWindowsClicked(object sender, EventArgs e)
+        {
+            startWithWindowsToolStripMenuItem.Checked = !startWithWindowsToolStripMenuItem.Checked;
+
+            if (startWithWindowsToolStripMenuItem.Checked)
+            {
+                AddToAutoStart();
+            }
+            else
+            {
+                RemoveFromAutoStart();
+            }
+        }
+        private void RemoveFromAutoStart()
+        {
+            System.IO.File.Delete(shortcutPath);
+        }
+
+        private void AddToAutoStart()
+        {
+            Log.Debug(this, "Adding shortcut");
+            string shortcutto = System.Reflection.Assembly.GetExecutingAssembly().Location;
+
+            var wsh = new IWshShell_Class();
+            IWshRuntimeLibrary.IWshShortcut shortcut = wsh.CreateShortcut(shortcutPath) as IWshRuntimeLibrary.IWshShortcut;
+            shortcut.TargetPath = shortcutto;
+            shortcut.WorkingDirectory = Directory.GetParent(shortcutto).FullName;
+            shortcut.Save();
         }
 
         private void OnReconnectClick(object sender, EventArgs e)
