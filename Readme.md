@@ -25,3 +25,6 @@ external links and used libs:
 - https://github.com/kuwatay/mocolufa
 - https://github.com/FortySevenEffects/arduino_midi_library
 - https://github.com/tocklime/VoiceMeeterWrapper
+
+![image](https://user-images.githubusercontent.com/1823703/110623704-823fcd00-819d-11eb-998d-ef87a987f0de.png)
+
