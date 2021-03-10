@@ -3,7 +3,11 @@
 
 Midicontroller to controll VoiceMeter https://vb-audio.com/
 
-Parts:
+**Softawre Parts:**
+- Arduino/Compüonents is the Firmware for the Arduino Mega 2560
+- Windos/MidiRemoteWindowsAppliaction Application running on your Windows sys routing the midi commands to VoiceMeter
+
+**Hadware Parts:**
 - Linear Potentiometer 10k Ohm Linear
 - Radial Potentiometer 10k Ohm
 - Pushbutton
@@ -16,8 +20,6 @@ Parts:
 ## board cutout
 ![wood cutout](https://github.com/soma-web/MidiController/blob/master/Assets/wood_cut_out.png?raw=true)
 
-Main Class: 
-Components.ino
 
 external links and used libs:
 - https://drive.google.com/file/d/1s7BziN0kBaa-pbygHDTy4zMjjmCr-1WP/view?usp=sharing
